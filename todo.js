@@ -38,6 +38,18 @@ function addTodo() {
             const li = document.createElement('li'); //리스트 아이템 생성
             li.textContent = todo; // 텍스트 설정
 
+            
+            //삭제 버튼 추가 
+            //삭제버튼을 추가하고, 버튼을 누를때 배열 속 해당 항목을 삭제
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent='❌';
+            deleteButton.addEventListener('click',() => {
+                deleteTodo(index);
+            });
+
+            // 리스트 아이템에 삭제 버튼 추가 
+            li.appendChild(deleteButton);
+            
             todoList.appendChild(li); // 목록에 리스트 아이템 추가
 
         });
