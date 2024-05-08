@@ -23,6 +23,7 @@ function addTodo() {
     
     todos.push(todoText); // 배열에 todotext 추가하기
     renderTodos(); // todo 목록을 그리는 함수 호출 
+    saveTodo(todos); // localStorage에 저장 
     todoInput.value = ''; // 입력 필드 비우기
     
     function renderTodos() {
@@ -56,12 +57,23 @@ function addTodo() {
         });
     }
 
+    // todo 수정하는 함수
+    function editTodo(index){
+       
+    }
+
 
     // todo 삭제하는 함수
     // 내가 선택하는 특정 인덱스만 제거해야함.. 어떻게?
     function deleteTodo(index) {
         todos.splice(index, 1); //해당 인덱스의 요소를 배열에서 제거 
         renderTodos(); // 변경된 todo 목록을 다시 그림
+    }
+
+    // 로컬 저장소에 저장하기
+    function saveTodo(todos){
+        localStorage.setItem
+        ('todos', JSON.stringify(todos));
     }
 }
 
