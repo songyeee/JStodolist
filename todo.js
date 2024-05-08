@@ -49,11 +49,16 @@ function addTodo() {
 
             // 리스트 아이템에 삭제 버튼 추가 
             li.appendChild(deleteButton);
-            
-            todoList.appendChild(li); // 목록에 리스트 아이템 추가
 
+            todoList.appendChild(li); // 목록에 리스트 아이템 추가
         });
-        
+    }
+
+    // todo 삭제하는 함수
+    // 내가 선택하는 특정 인덱스만 제거해야함.. 어떻게?
+    function deleteTodo(index) {
+        todos.splice(index, 1); //해당 인덱스의 요소를 배열에서 제거 
+        renderTodos(); // 변경된 todo 목록을 다시 그림
     }
 }
 
