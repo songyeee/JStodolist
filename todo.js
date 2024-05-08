@@ -32,6 +32,14 @@ function addTodo() {
             const li = document.createElement('li'); //리스트 아이템 생성
             li.textContent = todo; // 텍스트 설정
 
+            // 수정 버튼 추가
+            const editButton = document.createElement('button');
+            editButton.textContent='✏️'
+            editButton.addEventListener('click', () => {
+                editTodo(index);
+            });
+
+
             //삭제 버튼 추가 
             //삭제버튼을 추가하고, 버튼을 누를때 배열 속 해당 항목을 삭제
             const deleteButton = document.createElement('button');
@@ -40,15 +48,14 @@ function addTodo() {
                 deleteTodo(index);
             });
 
-            // 리스트 아이템에 삭제 버튼 추가 
+            // 리스트 아이템에 삭제,수정 버튼 추가 
+            li.appendChild(editButton);
             li.appendChild(deleteButton);
 
             todoList.appendChild(li); // 목록에 리스트 아이템 추가
         });
     }
 
-    
-   
 
     // todo 삭제하는 함수
     // 내가 선택하는 특정 인덱스만 제거해야함.. 어떻게?
