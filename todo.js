@@ -68,8 +68,6 @@ function addTodo() {
         addButton.removeEventListener('click',addTodo);
         addButton.addEventListener('click', updateTodo);
     }
-    // 수정 버튼 클릭시
-    // 
     function updateTodo() {
         // 입력 필드의 값을 가져와서 편집 중인 todo의 내용으로 업데이트
         todos[editingIndex] = todoInput.value.trim();
@@ -105,4 +103,11 @@ function addTodo() {
         ('todos', JSON.stringify(todos));
     }
     
-    
+    // 로컬 저장소에서 불러오기
+    window.addEventListener('load',function(){
+        const savedTodos = localStorage.getItem('todos');
+        if (savedTodos) {
+            todos = JSON.parse(savedTodos);
+            renderTodos();
+        }
+    });
