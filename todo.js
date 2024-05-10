@@ -15,6 +15,9 @@ todoInput.addEventListener('keydown', function(e){
     }
 })
 
+
+let editingIndex = -1;
+
 // addTodo 함수 작성
 function addTodo() {
     const todoText = todoInput.value.trim();
@@ -59,10 +62,33 @@ function addTodo() {
 
     // todo 수정하는 함수
     function editTodo(index){
-       
+        editingIndex = index;
+        todoInput.value = todos[index];
+        addButton.textContent = '확인'
+        addButton.removeEventListener('click',addTodo);
+        addButton.addEventListener('click', updateTodo);
+    }
+    // 수정 버튼 클릭시
+    // 
+    function updateTodo() {
+        // 입력 필드의 값을 가져와서 편집 중인 todo의 내용으로 업데이트
+        todos[editingIndex] = todoInput.value.trim();
+        // 편집 중인 todo의 인덱스 초기화
+        editingIndex = -1;
+        // 입력 필드 비우기
+        todoInput.value = '';
+        // 확인 버튼 다시 추가하기
+        addButton.textContent = '추가';
+        // 확인 버튼 클릭 이벤트 리스너를 원래의 추가 함수로 변경
+        addButton.removeEventListener('click', updateTodo);
+        addButton.addEventListener('click', addTodo);
+        // todo 목록 다시 그리기
+        renderTodos();
+        // 변경된 todo 목록을 저장
+        saveTodo(todos);
     }
 
-
+   
     // todo 삭제하는 함수
     // 내가 선택하는 특정 인덱스만 제거해야함.. 어떻게?
     function deleteTodo(index) {
@@ -70,17 +96,13 @@ function addTodo() {
         renderTodos(); // 변경된 todo 목록을 다시 그림
     }
 
+
+}
+
     // 로컬 저장소에 저장하기
     function saveTodo(todos){
         localStorage.setItem
         ('todos', JSON.stringify(todos));
     }
-}
-
-
-
-
-
-
-
-
+    
+    
