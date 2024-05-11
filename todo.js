@@ -52,6 +52,7 @@ function addTodo() {
                 deleteTodo(index);
             });
 
+
             // 리스트 아이템에 삭제,수정 버튼 추가 
             li.appendChild(editButton);
             li.appendChild(deleteButton);
@@ -59,6 +60,8 @@ function addTodo() {
             todoList.appendChild(li); // 목록에 리스트 아이템 추가
         });
     }
+
+}
 
     // todo 수정하는 함수
     function editTodo(index){
@@ -93,11 +96,9 @@ function addTodo() {
         todos.splice(index, 1); //해당 인덱스의 요소를 배열에서 제거 
         renderTodos(); // 변경된 todo 목록을 다시 그림
     }
+   
 
-
-}
-
-    // 로컬 저장소에 저장하기
+// 로컬 저장소에 저장하기
     function saveTodo(todos){
         localStorage.setItem
         ('todos', JSON.stringify(todos));
